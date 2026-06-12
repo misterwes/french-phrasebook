@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f6f4;
+  --foreground: #172020;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flashcard-button {
+  perspective: 1600px;
+  width: 100%;
+  text-align: left;
+}
+
+.flashcard-button:focus-visible,
+.control-button:focus-visible,
+.audio-button:focus-visible,
+.segmented-button:focus-visible,
+.deck-button:focus-visible {
+  outline: 3px solid #14746f;
+  outline-offset: 3px;
+}
+
+.flashcard-inner {
+  display: block;
+  height: 430px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 420ms ease;
+}
+
+.flashcard-button.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  backface-visibility: hidden;
+  background: #ffffff;
+  border: 1px solid #cfd8d1;
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgb(23 32 32 / 12%);
+  display: block;
+  inset: 0;
+  overflow: hidden;
+  padding: 24px;
+  position: absolute;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.language-pill,
+.pronunciation-chip {
+  border-radius: 6px;
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 32px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 6px 10px;
+}
+
+.language-pill {
+  background: #14746f;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.pronunciation-chip {
+  background: #f2c94c;
+  color: #172020;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.control-button,
+.audio-button,
+.segmented-button,
+.deck-button {
+  border-radius: 8px;
+  min-height: 44px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.control-button,
+.audio-button {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.control-button {
+  background: #ffffff;
+  border: 1px solid #cfd8d1;
+  color: #172020;
+  font-weight: 800;
+}
+
+.audio-button {
+  background: #cf3f2e;
+  border: 1px solid #cf3f2e;
+  color: #ffffff;
+  font-weight: 900;
+  min-width: 132px;
+}
+
+.audio-button:disabled {
+  background: #c8d0cb;
+  border-color: #c8d0cb;
+  color: #4d5a55;
+}
+
+.control-button:hover,
+.deck-button:hover,
+.segmented-button:hover {
+  border-color: #14746f;
+}
+
+.audio-button:not(:disabled):hover {
+  background: #a83125;
+}
+
+.control-button:active,
+.audio-button:not(:disabled):active,
+.segmented-button:active,
+.deck-button:active {
+  transform: translateY(1px);
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #cfd8d1;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.segmented-button {
+  background: #f4f6f4;
+  border: 1px solid #cfd8d1;
+  color: #172020;
+  font-weight: 800;
+  padding: 10px 12px;
+}
+
+.segmented-button.is-selected {
+  background: #14746f;
+  border-color: #14746f;
+  color: #ffffff;
+}
+
+.deck-button {
+  align-items: center;
+  background: #f9faf9;
+  border: 1px solid #dce4de;
+  color: #172020;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  padding: 8px 10px;
+}
+
+.deck-button.is-current {
+  background: #e7f1ef;
+  border-color: #14746f;
+}
+
+.deck-number {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d7ded8;
+  border-radius: 6px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  width: 30px;
+}
+
+@media (max-width: 640px) {
+  .flashcard-inner {
+    height: 360px;
+  }
+
+  .flashcard-face {
+    padding: 18px;
+  }
+
+  .language-pill,
+  .pronunciation-chip {
+    font-size: 0.74rem;
+    min-height: 30px;
+    padding: 5px 8px;
+  }
+
+  .control-button,
+  .audio-button {
+    padding: 10px 8px;
+  }
+
+  .audio-button {
+    min-width: 0;
+  }
+}
